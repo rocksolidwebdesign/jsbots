@@ -4,7 +4,7 @@ A game of artificial intelligence programming.
 
 # Try It
 
-Go [HERE](http://rocksolidwebdesign.github.io/intellibots.js/) to try it yourself.
+Go [HERE](http://rocksolidwebdesign.github.io/jsbots/) to try it yourself.
 
 # How to Play
 
