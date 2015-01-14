@@ -1,0 +1,112 @@
+.hide {
+  display: none;
+}
+
+.clear {
+  clear: both;
+}
+
+.canvas-container {
+  padding-bottom: 15px;
+}
+
+.canvas {
+  background-color: #f4f4f4;
+  background-image: url(../img/field.jpg);
+  background-size: 100% 100%;
+  border: 1px solid #ccc;
+  display: block;
+  margin: 0 auto;
+  width: 1024px;
+  height: 576px;
+}
+
+.layers {
+  padding: 5px 0;
+}
+
+.layers input {
+  width: 35px;
+}
+
+.nn-config-panel em,
+.advanced-options em {
+  display: block;
+  font-size: 0.8em;
+}
+
+.save-name-input {
+  width: 100%;
+}
+
+.saved-game-name {
+  cursor: pointer;
+}
+
+.saved-game-name:hover {
+  background-color: #337ab7;
+  color: white;
+  font-weight: bold;
+  border-radius: 3px;
+}
+
+.saved-games-list {
+  height: 360px;
+  overflow-y: auto;
+}
+
+.modal input[type="text"],
+.config-screen input[type="text"],
+.config-screen input[type="text"] {
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  padding: 0 3px;
+}
+
+.config-screen .advanced-options input[type="text"] {
+  width: 30px;
+  text-align: right;
+}
+
+.config-screen .nn-config-panel input[type="text"] {
+  width: 30px;
+}
+
+.play-button {
+  width: 80px;
+}
+
+.winning-bot {
+  background-color: #337ab7 !important;
+  color: white;
+  font-weight: bold;
+}
+
+th.bot-stat {
+  text-align: right;
+}
+
+td.bot-stat {
+  text-align: right;
+  font-family: 'Monaco', 'DejaVu Sans Mono', 'Courier New', monospace;
+}
+
+.bot-stats-container {
+  height: 250px;
+  overflow-y: auto;
+}
+
+.chromosome-display-output {
+  font-family: monospace;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 3px;
+  border-radius: 5px;
+}
+
+.messages-output {
+  height: 200px;
+  overflow-y: auto;
+}

@@ -1,0 +1,297 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>NN Sim</title>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+  <div id="app">
+    <!-- Menu Bar {{{ -->
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Intellibots</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">File <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#" class="js-new"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> New Game</a></li>
+                <li class="divider"></li>
+                <li><a href="#" class="js-load"><span class="glyphicon glyphicon-open" aria-hidden="true"></span> Load...</a></li>
+                <li style="display: none;"><a href="#" class="js-save"><span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span> Save...</a></li>
+              </ul>
+            </li>
+          </ul>
+          <div class="navbar-form navbar-left">
+            <span class="btn btn-success js-btn js-start">Run <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></span>
+            <span class="btn btn-success play-button js-run" style="display: none;"><span class="glyphicon glyphicon-play" aria-hidden="true"></span> Play</span>
+            <span class="btn btn-primary js-evolve" style="display: none;">Evolve <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span></span>
+            <span class="btn btn-default js-retry" style="display: none;">Retry <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></span>
+            <span class="btn btn-warning js-reset" style="display: none;">Kill All <span class="glyphicon glyphicon-fire" aria-hidden="true"></span></span>
+          </div>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+    <!-- Menu Bar }}} -->
+
+    <div class="container">
+      <p>
+        <input type="checkbox" class="js-is-real-game"> Play timed competitive game. Time limit: 10mins. <input type="text" class="js-game-time-limit" value="10" disabled="disabled" style="display: none;">
+      </p>
+    </div>
+
+    <!-- Config Screen {{{ -->
+    <div class="js-new-game-settings config-screen container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="panel panel-default nn-config-panel">
+            <div class="panel-heading">
+              <strong>Neural Networks</strong>
+            </div>
+            <div class="panel-body form-horizontal">
+              <p>
+                Setup the layers and number of neurons in each layer for the robot brains.
+              </p>
+              <div class="layers">
+                <input type="text" class="js-inputs-qty" disabled="disabled" value="1"> <strong>INPUTS</strong>
+              </div>
+              <p>
+                <em>The number of inputs depends on how many features are checked in the features column.</em>
+              </p>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  Layers <span class="btn btn-info btn-xs js-add-layer"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Layer</span>
+                </div>
+                <div class="panel-body">
+                  <div class="js-layers">
+                  </div>
+                </div>
+              </div>
+              <div class="layers">
+                <input type="text" name="output_layer" value="2" disabled="disabled"> <strong>OUTPUTS</strong>
+              </div>
+              <p>
+                <em>The number of outputs is always 2, an output to control each wheel.</em>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <strong>Features</strong>
+            </div>
+            <div class="panel-body">
+              <p>
+                Choose which information the robot brains should use.
+              </p>
+              <div>
+                <input type="checkbox" name="inputs" class="js-feature" data-size="1" data-field-name="distance" checked="checked"> Target Distance<br>
+                <input type="checkbox" name="inputs" class="js-feature" data-size="2" data-field-name="nearest_coord"> Target Position (x,y absolute)<br>
+                <input type="checkbox" name="inputs" class="js-feature" data-size="2" data-field-name="nearest_vector"> Target Direction (x,y relative)<br>
+                <input type="checkbox" name="inputs" class="js-feature" data-size="1" data-field-name="speed"> Feet Per Second<br>
+                <!--<input type="checkbox" name="inputs" class="js-feature" data-size="1" data-field-name="closing_speed"> Approach Speed<br>-->
+                <input type="checkbox" name="inputs" class="js-feature" data-size="1" data-field-name="lspeed"> Left Wheel Speed<br>
+                <input type="checkbox" name="inputs" class="js-feature" data-size="1" data-field-name="rspeed"> Right Wheel Speed<br>
+                <input type="checkbox" name="inputs" class="js-feature" data-size="1" data-field-name="wheel_diff"> Wheel Speed Difference<br>
+                <input type="checkbox" name="inputs" class="js-feature" data-size="1" data-field-name="wheel_ratio"> Wheel Speed Ratio<br>
+                <input type="checkbox" name="inputs" class="js-feature" data-size="2" data-field-name="position"> Robot Position (x,y absolute)<br>
+                <input type="checkbox" name="inputs" class="js-feature" data-size="2" data-field-name="heading"> Heading Direction (x,y relative)<br>
+                <input type="checkbox" name="inputs" class="js-feature" data-size="1" data-field-name="angle"> Heading Angle (degrees absolute)<br>
+                <input type="checkbox" name="inputs" class="js-feature" data-size="1" data-field-name="angle_diff"> Angle Difference (degrees relative)
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <strong>Preferences</strong>
+        </div>
+        <div class="panel-body">
+          <p>
+            Firebase URL: <input type="text" class="js-db-url" size="60" value="">
+          </p>
+        </div>
+      </div>
+
+      <div class="panel panel-default advanced-options">
+        <div class="panel-heading">
+          <strong>Advanced Options</strong>
+        </div>
+        <div class="panel-body form-horizontal">
+          <p>
+            <input type="text" size="2" class="js-crossover-chance" value="40">% Chromosome Mutation Probability
+            <em>Possiblity that a child will be based on two parents, otherwise child will simply be a mutated form of one parent.</em>
+          </p>
+          <p>
+            <input type="text" size="2" class="js-gene-mutation-chance" value="3.5">% Gene Mutation Probability<br>
+            <em>When looking for mutations, possibility of mutating an individual gene.</em>
+          </p>
+          <p>
+            <input type="text" size="2" class="js-first-order-chance" value="80">% Best Fitness Selection
+            <em>Probability that parents will be selected from the highest fitness individuals, otherwise the second highest class will be used.</em>
+          </p>
+          <p>
+            <input type="text" size="2" class="js-unfit-chance" value="20">% Low Fitness Probability
+            <em>Chance that one parent (but not both) from a pair will be low fitness.</em>
+          </p>
+          <p>
+            <input type="text" size="2" class="js-new-chance" value="10">% All New Probability
+            <em>Percentage chance that a child will be completely randomly generated and not based on any parent genes.</em>
+          </p>
+          <p>
+            Keep the <input type="text" size="2" class="js-num-to-keep" value="4"> highest fitness members
+            <em>Number of highest fitness members to keep in the population when evolving a new generation.</em>
+          </p>
+          <div class="hide">
+            <p>
+              <input type="text" class="js-speed-scale" value="200"> Motion Speed Percent
+            </p>
+            <p>
+              <input type="text" class="js-num-robots" value="25"> Number of Robots
+            </p>
+            <p>
+              <input type="text" class="js-num-targets" value="35"> Number of Targets
+            </p>
+            <p>
+              <input type="text" class="js-field-width" value="1024"> Field Width (px)
+            </p>
+            <p>
+              <input type="text" class="js-field-height" value="576"> Field Height (px)
+            </p>
+            <p>
+               <input type="checkbox" class="js-teleport" value="true"> Enable teleport on field edges
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Config Screen }}} -->
+
+    <!-- Game Screen {{{ -->
+    <div class="js-run-game-screen" style="display: none;">
+      <div class="js-playing-field canvas-container">
+        <div class="well well-sm container">
+          <div class="row">
+            <div class="col-md-3">High Score: <strong class="js-high-score">0</strong></div>
+            <div class="col-md-3">Last Score: <strong class="js-top-score">0</strong></div>
+            <div class="col-md-3">Best Bot: <em class="js-top-name"></em> found <strong class="js-top-bot">0</strong></div>
+            <div class="col-md-3"><strong class="js-minutes">0</strong> Generation #<strong class="js-generation">1</strong></div>
+          </div>
+        </div>
+
+        <canvas class="canvas js-canvas0 js-canvas" style="display: none;"></canvas>
+        <canvas class="canvas js-canvas1 js-canvas" style="display: none;"></canvas>
+      </div>
+
+      <div class="container">
+        <div class="row">
+          <div class="settings col-md-9">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <strong>Bot Stats</strong>
+              </div>
+              <div class="panel-body">
+                <div class="bot-stats-container">
+                  <table class="table table-striped table-bordered table-condensed">
+                    <thead>
+                      <th style="text-align: center;">DNA</th>
+                      <th>Name</th>
+                      <th class="bot-stat"> Age </th>
+                      <th class="bot-stat"> Score </th>
+                      <th class="bot-stat"> Found </th>
+                      <th class="bot-stat"> Avg Find Time </th>
+                      <th class="bot-stat"> Avg Find Distance </th>
+                    </thead>
+                    <tbody class="js-bot-stats-list bot-stats-list">
+                    </tbody>
+                  </table>
+                </div>
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <h4>DNA Inspector</h4>
+                      <p>
+                        Genes for: <em class="js-current-dna-name"></em>
+                      </p>
+                      <p>
+                        <textarea cols="60" rows="10" class="js-chromosome-output chromosome-display-output"></textarea>
+                      </p>
+                    </div>
+                    <div class="col-md-6">
+                      <h4>Console</h4>
+                      <p>
+                        &nbsp;
+                      </p>
+                      <div class="js-messages well messages-output"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="js-display-config settings col-md-3">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <strong>Game Config</strong>
+              </div>
+              <div class="panel-body">
+                <div><strong>Neural Networks</strong></div>
+                <ul class="js-network-layers-config list-group">
+                </ul>
+                <div><strong>Features</strong></div>
+                <ul class="js-inputs-list-config list-group">
+                </ul>
+                <div><strong>Evolution</strong></div>
+                <div class="params">
+                  <div>Mutation Chance <span class="js-config-display-crossover-chance"></span>%</div>
+                  <div>Percentage Mutation <span class="js-config-display-gene-chance"></span>%</div>
+                  <div>High Fitness Chance <span class="js-config-display-high-chance"></span>%</div>
+                  <div>Low Fitness Chance <span class="js-config-display-low-chance"></span>%</div>
+                  <div>All New Chance <span class="js-config-display-new-chance"></span>%</div>
+                  <div>Keep Qty <span class="js-config-display-keep-qty"></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Game Screen }}} -->
+
+    <div class="hide">
+      <img class="js-img-sweeper" src="img/sweeper.png" alt="Robot">
+      <img class="js-img-t0" src="img/treasure.png" alt="Treasure">
+      <img class="js-img-t1"  src="img/treasure_on.png" alt="Found Treasure">
+    </div>
+  </div>
+
+  <script type="text/javascript" src="vendor/handlebars-v2.0.0.js"></script>
+  <script type="text/javascript" src="vendor/jquery-2.1.3.min.js"></script>
+  <script type="text/javascript" src="vendor/underscore-min.js"></script>
+  <script type="text/javascript" src="vendor/backbone-min.js"></script>
+  <script type="text/javascript" src="vendor/firebase.js"></script>
+  <script type="text/javascript" src="vendor/bootstrap/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="vendor/faker.js"></script>
+  <script type="text/javascript" src="vendor/require.js" data-main="js/main.js"></script>
+</body>
+</html>

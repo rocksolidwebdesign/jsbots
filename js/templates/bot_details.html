@@ -1,0 +1,25 @@
+<tr class="js-bot-info-display bot-info-details" data-id="{{ id }}">
+  <td style="text-align: center;">
+    <button type="button" class="btn btn-default btn-xs js-chromosome-display" data-chromosome="{{ chromosome }}" data-name="{{ name }}">
+      <span class="glyphicon glyphicon-eye-open"></span>
+    </button>
+  </td>
+  <td>
+    {{{ icon }}}{{ name }}
+  </td>
+  <td class="sort_age bot-stat bot-stat-age">
+    <span class="js-bot-data-age">{{ age }}</span>
+  </td>
+  <td class="sort_score bot-stat bot-stat-score">
+    <span class="js-bot-data-score">{{ score }}</span>
+  </td>
+  <td class="sort_qty bot-stat bot-stat-qty">
+    <span class="js-bot-data-qty">{{ qty }}</span>
+  </td>
+  <td class="sort_avgtime bot-stat bot-stat-avgtime">
+    <span class="js-bot-data-avg">{{ avgTime }}</span>
+  </td>
+  <td class="sort_distance bot-stat bot-stat-distance">
+    <span class="js-bot-data-distance">{{ distance }}</span>
+  </td>
+</tr>
