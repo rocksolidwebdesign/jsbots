@@ -56,6 +56,7 @@
 }
 
 .modal input[type="text"],
+input[name="time_limit"],
 .config-screen input[type="text"],
 .config-screen input[type="text"] {
   border-radius: 3px;

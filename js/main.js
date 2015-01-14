@@ -1,3 +1,8 @@
+$('#app_form_container').on('submit', function(e) {
+  e.preventDefault();
+  return false;
+});
+
 requirejs.config({
   baseUrl: 'js',
   paths: {

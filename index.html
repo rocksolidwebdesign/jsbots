@@ -11,6 +11,7 @@
 
 <body>
   <div id="app">
+  <form id="app_form_container" action="/" method="get">
     <!-- Menu Bar {{{ -->
     <nav class="navbar navbar-default">
       <div class="container-fluid">
@@ -52,7 +53,7 @@
 
     <div class="container">
       <p>
-        <input type="checkbox" class="js-is-real-game"> Play timed competitive game. Time limit: 10mins. <input type="text" class="js-game-time-limit" value="10" disabled="disabled" style="display: none;">
+        Time limit: <input size="2" type="text" name="time_limit" class="js-game-time-limit" value="2.5"> minutes
       </p>
     </div>
 
@@ -69,7 +70,7 @@
                 Setup the layers and number of neurons in each layer for the robot brains.
               </p>
               <div class="layers">
-                <input type="text" class="js-inputs-qty" disabled="disabled" value="1"> <strong>INPUTS</strong>
+                <input type="text" name="inputs_qty" class="js-inputs-qty" disabled="disabled" value="1"> <strong>INPUTS</strong>
               </div>
               <p>
                 <em>The number of inputs depends on how many features are checked in the features column.</em>
@@ -128,7 +129,7 @@
         </div>
         <div class="panel-body">
           <p>
-            Firebase URL: <input type="text" class="js-db-url" size="60" value="">
+            Firebase URL: <input type="text" name="firebase_url" class="js-db-url" size="60" value="">
           </p>
         </div>
       </div>
@@ -139,47 +140,47 @@
         </div>
         <div class="panel-body form-horizontal">
           <p>
-            <input type="text" size="2" class="js-crossover-chance" value="40">% Chromosome Mutation Probability
+            <input type="text" size="2" name="crossover_chance" class="js-crossover-chance" value="40">% Chromosome Mutation Probability
             <em>Possiblity that a child will be based on two parents, otherwise child will simply be a mutated form of one parent.</em>
           </p>
           <p>
-            <input type="text" size="2" class="js-gene-mutation-chance" value="3.5">% Gene Mutation Probability<br>
+            <input type="text" size="2" name="mutation_chance" class="js-gene-mutation-chance" value="3.5">% Gene Mutation Probability<br>
             <em>When looking for mutations, possibility of mutating an individual gene.</em>
           </p>
           <p>
-            <input type="text" size="2" class="js-first-order-chance" value="80">% Best Fitness Selection
+            <input type="text" size="2" name="first_order_chance" class="js-first-order-chance" value="80">% Best Fitness Selection
             <em>Probability that parents will be selected from the highest fitness individuals, otherwise the second highest class will be used.</em>
           </p>
           <p>
-            <input type="text" size="2" class="js-unfit-chance" value="20">% Low Fitness Probability
+            <input type="text" size="2" name="unfit_chance" class="js-unfit-chance" value="20">% Low Fitness Probability
             <em>Chance that one parent (but not both) from a pair will be low fitness.</em>
           </p>
           <p>
-            <input type="text" size="2" class="js-new-chance" value="10">% All New Probability
+            <input type="text" size="2" name="new_chance" class="js-new-chance" value="10">% All New Probability
             <em>Percentage chance that a child will be completely randomly generated and not based on any parent genes.</em>
           </p>
           <p>
-            Keep the <input type="text" size="2" class="js-num-to-keep" value="4"> highest fitness members
+            Keep the <input type="text" size="2" name="num_to_keep" class="js-num-to-keep" value="4"> highest fitness members
             <em>Number of highest fitness members to keep in the population when evolving a new generation.</em>
           </p>
           <div class="hide">
             <p>
-              <input type="text" class="js-speed-scale" value="200"> Motion Speed Percent
+              <input type="text" name="speed_scale" class="js-speed-scale" value="200"> Motion Speed Percent
             </p>
             <p>
-              <input type="text" class="js-num-robots" value="25"> Number of Robots
+              <input type="text" name="num_bots" class="js-num-robots" value="25"> Number of Robots
             </p>
             <p>
-              <input type="text" class="js-num-targets" value="35"> Number of Targets
+              <input type="text" name="num_targets" class="js-num-targets" value="35"> Number of Targets
             </p>
             <p>
-              <input type="text" class="js-field-width" value="1024"> Field Width (px)
+              <input type="text" name="field_width" class="js-field-width" value="1024"> Field Width (px)
             </p>
             <p>
-              <input type="text" class="js-field-height" value="576"> Field Height (px)
+              <input type="text" name="field_height" class="js-field-height" value="576"> Field Height (px)
             </p>
             <p>
-               <input type="checkbox" class="js-teleport" value="true"> Enable teleport on field edges
+               <input type="checkbox" name="use_teleport" class="js-teleport" value="true"> Enable teleport on field edges
             </p>
           </div>
         </div>
@@ -283,6 +284,7 @@
       <img class="js-img-t0" src="img/treasure.png" alt="Treasure">
       <img class="js-img-t1"  src="img/treasure_on.png" alt="Found Treasure">
     </div>
+  </form>
   </div>
 
   <script type="text/javascript" src="vendor/handlebars-v2.0.0.js"></script>
