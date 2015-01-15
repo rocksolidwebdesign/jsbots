@@ -6,6 +6,11 @@
   clear: both;
 }
 
+.tutorial-container {
+  font-family: "Georgia", "Times New Roman", serif;
+  font-size: 18px;
+}
+
 .canvas-container {
   padding-bottom: 15px;
 }
@@ -33,6 +38,10 @@
 .advanced-options em {
   display: block;
   font-size: 0.8em;
+}
+
+.tutorial-container em {
+  display: inline;
 }
 
 .save-name-input {

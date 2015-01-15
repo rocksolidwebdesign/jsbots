@@ -2,14 +2,16 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <span type="span" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></span>
         <h4 class="modal-title">Saved Games</h4>
       </div>
       <div class="modal-body">
-        <div class="js-saved-games-list saved-games-list container-fluid"></div>
+        <form action="/" method="get">
+          <div class="js-saved-games-list saved-games-list container-fluid"></div>
+        </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <span type="span" class="btn btn-default" data-dismiss="modal">Close</span>
       </div>
     </div>
   </div>

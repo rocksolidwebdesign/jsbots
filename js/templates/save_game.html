@@ -6,14 +6,18 @@
         <h4 class="modal-title">Save Game</h4>
       </div>
       <div class="modal-body">
-        <input type="text" class="js-save-name save-name-input" placeholder="Save as...">
-        <h4>Previously Saved Games:</h4>
-        <div class="saved-games-list">
-          <div class="container-fluid">
-            <div class="js-saved-games-list list-group">
+        <form action="/" method="get">
+          <div>
+            <input type="text" class="js-save-name save-name-input" placeholder="Save as...">
+          </div>
+          <h4>Previously Saved Games:</h4>
+          <div class="saved-games-list">
+            <div class="container-fluid">
+              <div class="js-saved-games-list list-group">
+              </div>
             </div>
           </div>
-        </div>
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary js-persist-save">Save</button>

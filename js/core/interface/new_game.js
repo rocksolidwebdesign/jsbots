@@ -23,6 +23,7 @@ define([
       gameConfig = this.getDomGameConfig();
 
       if (gameConfig) {
+        $('#tutorial').collapse('hide');
         this.initGame(gameConfig);
         this.startLoop();
       }

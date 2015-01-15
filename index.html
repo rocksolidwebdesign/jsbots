@@ -11,7 +11,7 @@
 
 <body>
   <div id="app">
-  <form id="app_form_container" action="/" method="get">
+  <form action="/" method="get">
     <!-- Menu Bar {{{ -->
     <nav class="navbar navbar-default">
       <div class="container-fluid">
@@ -46,17 +46,140 @@
             <span class="btn btn-default js-retry" style="display: none;">Retry <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></span>
             <span class="btn btn-warning js-reset" style="display: none;">Kill All <span class="glyphicon glyphicon-fire" aria-hidden="true"></span></span>
           </div>
+           <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="http://github.com/rocksolidwebdesign/jsbots">
+                Fork me on <strong>GitHub</strong>
+              </a>
+            </li>
+          </ul>
+          <div class="navbar-form navbar-right">
+            <button class="btn btn-default" type="button" data-toggle="collapse" data-target="#tutorial" aria-expanded="false" aria-controls="tutorial">
+              Tutorial <span class="glyphicon glyphicon-question-sign"></span>
+            </button>
+          </div>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
     <!-- Menu Bar }}} -->
 
     <div class="container">
+      <div class="collapse" id="tutorial">
+      <div class="panel panel-default nn-config-panel">
+        <div class="panel-heading">
+          <strong>Tutorial</strong>
+        </div>
+        <div class="panel-body">
+          <div class="tutorial-container">
+            <p><strong>The Goal</strong></p>
+            <p>
+              Eat as many targets as possible.
+            </p>
+            <ul>
+              <li>
+              Extra credit for robots that seem to seek out the targets.
+              </li>
+              <li>
+              Beat your high score for a given time limit.
+              </li>
+            </ul>
+            <p><strong>Quick Start</strong></p>
+            <p>
+              First just play a game.
+            </p>
+            <ul>
+              <li>
+              Right now :)
+              </li>
+              <li>
+              Go ahead, click the
+              <span class="btn btn-success js-btn js-start btn-sm">Run <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></span>
+              button.
+              </li>
+              <li>
+              The default settings are enough.
+              </li>
+            </ul>
+            <p>
+              Not very interesting, they just spin in circles right?
+            </p>
+            <ul>
+              <li>
+              Now start over, change some settings and see if you can fix that.
+              </li>
+            </ul>
+            <p>
+            Help, it's slow!
+            </p>
+            <ul>
+              <li>
+              Go to the "Game Settings" section at the bottom.
+              </li>
+              <li>
+              Try fewer robots and fewer targets
+              </li>
+              <li>
+              Try a smaller width and height for the playing field.
+              </li>
+              <li>
+              If you've changed the neuron layers, try taking out some neurons and layers.
+              </li>
+            </ul>
+            <p><strong>Basics</strong></p>
+            <p>
+              <em>STEP 1</em>: Create some robot brains:
+            </p>
+            <ul>
+              <li>In the "Neural Network" section, click the "Add Layer" button.</li>
+              <li>Change the number of neurons in that layer to something between approximately 1 and 100.</li>
+              <li>Add another layer if you like.</li>
+              <li>Add even more neurons and layers if you like.</li>
+            </ul>
+            <p>
+               Your computer will, however, have a limit as to how many neurons and layers it can process. If your game slows down, try reducing the number of layers and neurons.
+            </p>
+            <p>
+              <em>STEP 2</em>: Now decide what to "feed" the robot brains:
+            </p>
+            <ul>
+              <li>Check some checkboxes in the "Features" area.</li>
+              <li>Try different combinations of options to see which ones give you the best results.</li>
+            </ul>
+            <p>
+              If have you set up your robots well, you will probably eventually see some interesting behavior (more than just spinning in circles).
+            </p>
+            <p>
+              The goal of the game is to find a combination of neuron layers and features that demonstrate interesting behavior.
+            </p>
+            <p>
+              You may need to click the "Kill All" button a couple times before you see some robots that do more than spin in circles. This will randomly regenerate a new set of robots based on the brain configuration you chose in steps 1 and 2.
+            </p>
+            <p><strong>Training Your Robots</strong></p>
+            <p>
+              The next goal is to evolve your robots to have even <em>more</em> interesting behavior. You can do this by clicking the "Evolve" button once you are in game. <strong class="text-warning">Warning</strong>: this will destroy all your current robots except for the best ones, so if you want to save your progress, do so before clicking evolve.
+            </p>
+            <p>
+              Evolving will combine "genes" from two of the best robots and create new robots. A few of the best robots will also stay to play another round. You can see how many rounds your bot has been in the game in the "Age" column underneath the playing field.
+            </p>
+            <p><strong>Scoring</strong></p>
+            <p>
+              Your scores are really just to help you see when and whether your robots are actually improving beyond random chance. The score is based on the time limit and represents the score at the time the timer hits that limit.
+            </p>
+            <p>
+              By default this means that your score is how many targets you collected in 2 and a half minutes. Your high score will be the best score you've been able to achieve in your past games.
+            </p>
+            <p><strong>Saving and Loading Games</strong></p>
+            <p>
+              The "File" menu lets you save, load and start over.  You must get an account at <a href="http://www.firebase.com/">Firebase.com</a> if you want to be able to save your games. Get a firebase account and then put the URL of your firebase database into the "Firebase URL" field in the "Preferences" section.
+            </p>
+          </div>
+        </div>
+      </div>
+      </div>
       <p>
         Time limit: <input size="2" type="text" name="time_limit" class="js-game-time-limit" value="2.5"> minutes
       </p>
     </div>
-
     <!-- Config Screen {{{ -->
     <div class="js-new-game-settings config-screen container">
       <div class="row">
@@ -163,22 +286,29 @@
             Keep the <input type="text" size="2" name="num_to_keep" class="js-num-to-keep" value="4"> highest fitness members
             <em>Number of highest fitness members to keep in the population when evolving a new generation.</em>
           </p>
+        </div>
+      </div>
+      <div class="panel panel-default advanced-options">
+        <div class="panel-heading">
+          <strong>Game Settings</strong>
+        </div>
+        <div class="panel-body form-horizontal">
+          <p>
+            <input type="text" name="speed_scale" class="js-speed-scale" value="200"> Motion Speed Percent
+          </p>
+          <p>
+            <input type="text" name="num_bots" class="js-num-robots" value="25"> Number of Robots
+          </p>
+          <p>
+            <input type="text" name="num_targets" class="js-num-targets" value="35"> Number of Targets
+          </p>
+          <p>
+            <input type="text" name="field_width" class="js-field-width" value="1024"> Field Width (px)
+          </p>
+          <p>
+            <input type="text" name="field_height" class="js-field-height" value="576"> Field Height (px)
+          </p>
           <div class="hide">
-            <p>
-              <input type="text" name="speed_scale" class="js-speed-scale" value="200"> Motion Speed Percent
-            </p>
-            <p>
-              <input type="text" name="num_bots" class="js-num-robots" value="25"> Number of Robots
-            </p>
-            <p>
-              <input type="text" name="num_targets" class="js-num-targets" value="35"> Number of Targets
-            </p>
-            <p>
-              <input type="text" name="field_width" class="js-field-width" value="1024"> Field Width (px)
-            </p>
-            <p>
-              <input type="text" name="field_height" class="js-field-height" value="576"> Field Height (px)
-            </p>
             <p>
                <input type="checkbox" name="use_teleport" class="js-teleport" value="true"> Enable teleport on field edges
             </p>

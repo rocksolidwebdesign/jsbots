@@ -22,7 +22,6 @@ define([
       this.stopLoop();
       this.$existingSavesModal = null;
       $('.modal').modal('hide');
-      $('.modal').remove();
 
       this.openSavedGames();
       this.fetchGames()
@@ -85,7 +84,6 @@ define([
       var $target, id, gameConfig;
 
       $('.modal').modal('hide');
-      $('.modal').remove();
 
       $target = $(e.currentTarget);
       id = $target.data('id');
